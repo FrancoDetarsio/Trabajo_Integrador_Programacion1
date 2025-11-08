@@ -107,11 +107,47 @@ def filtro_rango_pob(lista, rango1, rango2):
                 bandera = True
 
         if bandera == False:
-            print("El continente ingresado no se encuentra en la lista")
+            print("No hay países que se encuentren dentro del rango de población ingresado")
     else:
         print("Los rangos ingresados son iguales\nIntente nuevamente con un rango mínimo y un rango máximo distintos.")
 
+def filtro_rango_sup(lista, rango1, rango2):
+    """
 
+    Filtra la lista en base a un rango de superficie fijado por el usuario y verifica cual es el rango mínimo y cual es el rango máximo
+
+    Args:
+        Datos: lista actualizada del archivo.csv, rangos ingresados por el usuario
+
+    Returns:
+        Lista Filtrada por rango de población, notifica si no se encuentra o si los rangos son iguales
+
+    """
+
+    rango1 = int(rango1)
+    rango2 = int(rango2) 
+
+    if rango1 != rango2:# verifica que los rangos no sean iguales
+        if rango1 > rango2: # nos aseguramos que rango es el minimo y cual es el maximo
+            min = rango2
+            max = rango1
+        else:
+            min = rango1
+            max = rango2
+
+        bandera = False
+
+        for i in lista:
+            superficie = int(i["superficie"]) # pasamos el valor a entero para evaluar
+
+            if (superficie >= min) and (superficie <= max):
+                print(f"• País: {i["nombre"]} | Población: {i["poblacion"]} | Superficie: {i["superficie"]}km² | Continente: {i["continente"]}")
+                bandera = True
+
+        if bandera == False:
+            print("No hay países que se encuentren dentro del rango de población ingresado")
+    else:
+        print("Los rangos ingresados son iguales\nIntente nuevamente con un rango mínimo y un rango máximo distintos.")
 
 # Aclaraciones
 # A lo largo del programa se usara "i" como iterador y marcador de indice
@@ -175,14 +211,16 @@ while opcion_menu != '5':
                     rango2 = input("Ingrese el segundo valor correspondiente al rango máximo: ")
                     verificar_inputs(rango2)
                     
-
                     filtro_rango_pob(lista_paises, rango1, rango2)
 
-
                 case 3:
-                    pass
+                    rango1 = input("Ingrese el primer valor correspondiente al rango mínimo (km²): ")
+                    verificar_inputs(rango1)
+                    print("")
+                    rango2 = input("Ingrese el segundo valor correspondiente al rango máximo (km²): ")
+                    verificar_inputs(rango2)
 
-
+                    filtro_rango_sup(lista_paises, rango1, rango2)
 
                 case _:
                     print("El número ingresado no corresponde con las opciones\nIntente nuevamente.")
