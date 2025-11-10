@@ -1,7 +1,7 @@
 # ----------------------------------------------------------------------------------
 
 # Trabajo Integrador -- Programación 1
-# Alumnos: Franco Detarsio y Agustin Pieve
+# Alumnos: Franco Detarsio y Agustín Pieve
 
 # ----------------------------------------------------------------------------------
 
@@ -9,7 +9,7 @@
 
 opcion_menu = ""
 
-# Definición de funciones
+# Bloque -- Definición de funciones
 
 def verificar_inputs(opcion):
     """
@@ -372,7 +372,7 @@ def pais_por_continente(lista, continente):
 
 # Aclaraciones
 # A lo largo del programa se usara "i" como iterador y marcador de indice
-# Se utilizará .strip() y .capitalize() para asegurarnos que las entradas tengan la misma escritura que la lista
+# Se utilizará .strip() y .title() para asegurarnos que las entradas tengan la misma escritura que la lista
 
 # ----- Programa Principal -----
 
