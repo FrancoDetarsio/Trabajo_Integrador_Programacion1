@@ -33,24 +33,24 @@ El programa contiene:
 
 
 # Instrucciones de ejecución
-Se muestra un menú gráfico con opciones numericas
-El usuario puede navegar entre las opciones ingresando el número correspondiente
-Según la opción seleccionada se le pedirá al usuario que ingrese un nombre de País/Continente o bien otra opción numerica
-Se mostrará la información solicitada por el usuario
-En caso de no contar con la información requerida se le notificará al usuario
-En caso del ingreso de valores inválidos se le notificará al usuario del error, permitiendo reintentar o reiniciando el menú gráfico
-El prográma se detendrá cuando el usario seleccione la opción "5. Salir"
+- Se muestra un menú gráfico con opciones numericas
+- El usuario puede navegar entre las opciones ingresando el número correspondiente
+- Según la opción seleccionada se le pedirá al usuario que ingrese un nombre de País/Continente o bien otra opción numerica
+- Se mostrará la información solicitada por el usuario
+- En caso de no contar con la información requerida se le notificará al usuario
+- En caso del ingreso de valores inválidos se le notificará al usuario del error, permitiendo reintentar o reiniciando el menú gráfico
+- El prográma se detendrá cuando el usario seleccione la opción "5. Salir"
 
 
 # Ejemplo de entradas y salidas
 Ejemplo con opción 1 "Buscar País":
-1 - El usuario visualiza el menú gráfico y desea seleccionar la primera opción "1. Buscar País"
-2 - El usuario ingresa ► "1" por teclado y presiona enter para confirmar
-3 - se le indicará por pantalla: "Ingrese el nombre del país que desea buscar."
-4 - El usuario ingresa por ejemplo ► "argentina" por teclado y presiona enter para confirmar (se aceptan mayúsculas y espacios redundantes)
-5 - El programa busca en el archivo.csv si este país pertenece a uno dentro de la lista
-6 - Si pertenece dará una salida: "Argentina cuenta con una población de 45376763, una superficie de 2780400km² y esta ubicado en el continente de America"
-7 - Si no pertenece dará otra salida: "El país ingresado no se encuentra en la lista"
+1. El usuario visualiza el menú gráfico y desea seleccionar la primera opción "1. Buscar País"
+2. El usuario ingresa ► "1" por teclado y presiona enter para confirmar
+3. se le indicará por pantalla: "Ingrese el nombre del país que desea buscar."
+4. El usuario ingresa por ejemplo ► "argentina" por teclado y presiona enter para confirmar (se aceptan mayúsculas y espacios redundantes)
+5. El programa busca en el archivo.csv si este país pertenece a uno dentro de la lista
+6. Si pertenece dará una salida: "Argentina cuenta con una población de 45376763, una superficie de 2780400km² y esta ubicado en el continente de America"
+7. Si no pertenece dará otra salida: "El país ingresado no se encuentra en la lista"
 
 
 # Participación de los integrantes
