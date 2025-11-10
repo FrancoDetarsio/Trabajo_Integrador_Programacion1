@@ -23,13 +23,12 @@ el usuario podrá optar por distintas funciones para analizar, buscar o filtrar 
 
 
 # Estructura
-El programa contiene:
+El programa contiene
 - Bloque -- Definición de funciones
 - Aclaraciones
-- Programa Principal
-    Bucle while: Muestra el menú gráfico interactivo con el que el usuario interactúa
-        match/case: Dará funcionalidad a las opciones del menú gráfico, según lo que el usuario ingrese
-        apoyandose en las funciones del "Bloque -- Definición de funciones"
+- Programa Principal:
+1. Bucle while: Muestra el menú gráfico interactivo con el que el usuario interactúa
+2. match/case: Dará funcionalidad a las opciones del menú gráfico, llamando a las funciones del "Bloque -- Definición de funciones" según corresponda
 
 
 # Instrucciones de ejecución
