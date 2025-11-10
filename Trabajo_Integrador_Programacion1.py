@@ -11,6 +11,9 @@ opcion_menu = ""
 
 # Bloque -- Definición de funciones
 
+
+# Funcion de verificación
+
 def verificar_inputs(opcion):
     """
 
@@ -33,6 +36,9 @@ def verificar_inputs(opcion):
 
     return opcion
 
+
+# Funcion de Lectura de Datos
+
 def lectura_csv(lista):
     """
 
@@ -50,6 +56,9 @@ def lectura_csv(lista):
         for linea in lineas[1:]: # [1:] con esto evitamos el encabezado del archivo.csv
             fila = linea.strip().split(',')
             lista.append({"nombre": fila[0], "poblacion": fila[1], "superficie": fila[2], "continente": fila[3]},)
+
+
+# Funciones de Filtro
 
 def filtro_continente(lista, continente):
     """
@@ -86,8 +95,6 @@ def filtro_rango_pob(lista, rango1, rango2):
         Lista Filtrada por rango de población, notifica si no se encuentra o si los rangos son iguales
 
     """
-    rango1 = int(rango1)
-    rango2 = int(rango2) 
 
     if rango1 != rango2:# verifica que los rangos no sean iguales
         if rango1 > rango2: # nos aseguramos que rango es el minimo y cual es el maximo
@@ -124,9 +131,6 @@ def filtro_rango_sup(lista, rango1, rango2):
 
     """
 
-    rango1 = int(rango1)
-    rango2 = int(rango2) 
-
     if rango1 != rango2:# verifica que los rangos no sean iguales
         if rango1 > rango2: # nos aseguramos que rango es el minimo y cual es el maximo
             min = rango2
@@ -148,6 +152,9 @@ def filtro_rango_sup(lista, rango1, rango2):
             print("No hay países que se encuentren dentro del rango de población ingresado")
     else:
         print("Los rangos ingresados son iguales\nIntente nuevamente con un rango mínimo y un rango máximo distintos.")
+
+
+# Funciones de Ordenamiento
 
 def ordenar_por_nombre(lista, opcion):
     """
@@ -258,6 +265,9 @@ def ordenar_por_superficie(lista, opcion):
             print(f"• País: {pais['nombre']} | Población: {pais['poblacion']} | Superficie: {pais['superficie']} km² | Continente: {pais['continente']}")  
     else:
         print("Por favor, ingrese un número válido del menú para ordenar ascendente o descendentemente.")
+
+
+#  Funciones de Estadística
 
 def mayor_menor_pob(lista):
     """
@@ -370,9 +380,11 @@ def pais_por_continente(lista, continente):
 
     return contador
 
+
 # Aclaraciones
 # A lo largo del programa se usara "i" como iterador y marcador de indice
 # Se utilizará .strip() y .title() para asegurarnos que las entradas tengan la misma escritura que la lista
+
 
 # ----- Programa Principal -----
 
