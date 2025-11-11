@@ -3,7 +3,7 @@
 # Descripción del proyecto
 Este trabajo realizado en grupo de 2 personas, pertenece a la entrega del trabajo integrador correspondiente a la materia Programación 1.
 En el se desarrolla una aplicación modular que toma datos sobre países desde un archivo.csv, mostrando un menú interactivo con el cual
-el usuario podrá optar por distintas funciones para analizar, buscar o filtrar información contenida en dicho archivo.csv.
+el usuario podrá optar por distintas funciones para analizar, buscar, actualizar o filtrar información contenida en dicho archivo.csv.
 
 
 # Datos de la universidad y la cátedra
@@ -38,13 +38,14 @@ El programa contiene
 - Se mostrará la información solicitada por el usuario
 - En caso de no contar con la información requerida se le notificará al usuario
 - En caso del ingreso de valores inválidos se le notificará al usuario del error, permitiendo reintentar o reiniciando el menú gráfico
-- El prográma se detendrá cuando el usario seleccione la opción "5. Salir"
+- Si corresponde con un ingreso o actualización se actualiza la información en el Archivo.csv
+- El prográma se detendrá cuando el usario seleccione la opción "7. Salir"
 
 
 # Ejemplo de entradas y salidas
-Ejemplo con opción 1 "Buscar País":
-1. El usuario visualiza el menú gráfico y desea seleccionar la primera opción "1. Buscar País"
-2. El usuario ingresa ► "1" por teclado y presiona enter para confirmar
+Ejemplo con opción 3. "Buscar País":
+1. El usuario visualiza el menú gráfico y desea seleccionar la tercera opción "3. Buscar País"
+2. El usuario ingresa ► "3" por teclado y presiona enter para confirmar
 3. se le indicará por pantalla: "Ingrese el nombre del país que desea buscar."
 4. El usuario ingresa por ejemplo ► "argentina" por teclado y presiona enter para confirmar (se aceptan mayúsculas y espacios redundantes)
 5. El programa busca en el archivo.csv si este país pertenece a uno dentro de la lista
@@ -54,10 +55,12 @@ Ejemplo con opción 1 "Buscar País":
 
 # Participación de los integrantes
 - Estructura general: Trabajo Colaboratibo
-- opción "1. Buscar País": Trabajo Colaboratibo
-- opción "2. Filtrar Países": Trabajo Colaboratibo
-- opción "3. Ordenar Países": Agustín Pieve
-- opción "4. Mostrar Estadísticas": Franco Detarsio
+- opción "1. Agregar un País": Trabajo Colaboratibo
+- opción "2. Actualizar (Pob/Sup)": Trabajo Colaboratibo
+- opción "3. Buscar País": Trabajo Colaboratibo
+- opción "4. Filtrar Países": Trabajo Colaboratibo
+- opción "5. Ordenar Países": Agustín Pieve
+- opción "6. Mostrar Estadísticas": Franco Detarsio
 
 
 # Repositorio de GitHub

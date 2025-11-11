@@ -5,6 +5,7 @@
 
 # ----------------------------------------------------------------------------------
 
+
 # inicializacion de variables
 
 opcion_menu = ""
@@ -12,7 +13,7 @@ opcion_menu = ""
 # Bloque -- Definición de funciones
 
 
-# Funcion de verificación
+# Funciones de verificación
 
 def verificar_inputs(opcion):
     """
@@ -36,8 +37,30 @@ def verificar_inputs(opcion):
 
     return opcion
 
+def verificar_duplicado(lista, pais):
+    """
 
-# Funcion de Lectura de Datos
+    Verifica si el país existe en la lista
+
+    Args:
+        Datos: País que ingresa el usuario
+
+    Returns:
+        Si existe devolvera True, de lo contrario devolverá False
+
+    """
+
+    existe = False
+
+    for i in lista:
+        if pais in i["nombre"]:
+            existe = True
+
+    return existe
+
+
+
+# Funciones de Lectura y escritura de Datos
 
 def lectura_csv(lista):
     """
@@ -49,6 +72,7 @@ def lectura_csv(lista):
 
     Returns:
         lista de diccionarios con el contenido del archivo.csv
+    
     """
 
     with open("Base_de_Datos.csv", "r") as archivo:
@@ -56,6 +80,95 @@ def lectura_csv(lista):
         for linea in lineas[1:]: # [1:] con esto evitamos el encabezado del archivo.csv
             fila = linea.strip().split(',')
             lista.append({"nombre": fila[0], "poblacion": fila[1], "superficie": fila[2], "continente": fila[3]},)
+
+def agregar_pais(pais):
+    """
+
+    permite al usuario añadir un pais y los demas datos correspondientes a este al archivo.csv
+    se asegura que no se ingresen datos incorrectos o vacios
+
+    Args:
+    Datos: 
+        de entrada - país
+        dentro de la función - población, superficie, continente
+
+    Returns:
+        Se añadirá al archivo.csv la información dada y se mostrará una confirmación
+
+    """
+    
+    poblacion = input(f"Ingrese la población correspondiente a {pais}\n► ").strip()
+    poblacion = verificar_inputs(poblacion)
+
+    # nos aseguramos que no ingrese un valor vacío
+    while poblacion == 0:
+        poblacion = input("El valor ingresado para población no puede ser '0'\nIngrese el valor nuevamente\n► ").strip()
+        poblacion = verificar_inputs(poblacion)
+
+    superficie = input(f"Ingrese la superficie correspondiente a {pais} (km²)\n► ").strip()
+    superficie = verificar_inputs(superficie)
+
+    # nos aseguramos que no ingrese un valor vacío
+    while superficie == 0:
+        superficie = input("El valor ingresado para superficie no puede ser '0'\nIngrese el valor nuevamente\n► ").strip()
+        superficie = verificar_inputs(superficie)
+
+    continente = input(f"Ingrese el continente correspondiente a {pais}\n► ")
+
+    while not(continente.isalpha()):
+        continente = input("El valor que ingresó para continente no es válido\nIngreselo nuevamente\n► ").strip()
+
+    # Agregamos los datos juntados al archivo.csv
+    with open("Base_de_Datos.csv", "a") as archivo:
+        archivo.write(f"{pais},{poblacion},{superficie},{continente}\n")
+    
+    print("País guardado Exitosamente")
+
+def agregar_pob_sup(lista, pais):
+    """
+
+    Permite actualizar los valores de poblacion y superficie de un país existente en el archivo.csv
+    verifica que no se ingresen valores vacíos
+
+    Datos: 
+        lista actualizada del archivo.csv y país que se  desea actualizar
+
+    Returns:
+        país en el archivo.csv actualizado
+        mensaje de confirmación al usuario
+
+    """
+
+    poblacion = input(f"Ingrese la población actualizada para {pais}\n► ").strip()
+    poblacion = verificar_inputs(poblacion)
+
+    # nos aseguramos que no ingrese un valor vacío
+    while poblacion == 0:
+        poblacion = input("El valor ingresado para población no puede ser '0'\nIngrese el valor nuevamente\n► ").strip()
+        poblacion = verificar_inputs(poblacion)
+
+    superficie = input(f"Ingrese la superficie actualizada para {pais} (km²)\n► ").strip()
+    superficie = verificar_inputs(superficie)
+
+    # nos aseguramos que no ingrese un valor vacío
+    while superficie == 0:
+        superficie = input("El valor ingresado para superficie no puede ser '0'\nIngrese el valor nuevamente\n► ").strip()
+        superficie = verificar_inputs(superficie)
+
+    # reescribimos el archivo.csv para actualizar los datos necesarios
+    with open("Base_de_Datos.csv", "w") as archivo:
+        archivo.write("nombre,poblacion,superficie,continente\n") # encabezado de archivo.csv
+        
+        for i in lista:
+            if i["nombre"] == pais: # si la fila coincide con el país la actualizamos
+                i["poblacion"] = poblacion
+                i["superficie"] = superficie
+            
+            # vamos cargando los datos al archivo.csv
+            archivo.write(f"{i["nombre"]},{i["poblacion"]},{i["superficie"]},{i["continente"]}\n")
+
+    print("Datos actualizados exitosamente.")
+
 
 
 # Funciones de Filtro
@@ -154,6 +267,7 @@ def filtro_rango_sup(lista, rango1, rango2):
         print("Los rangos ingresados son iguales\nIntente nuevamente con un rango mínimo y un rango máximo distintos.")
 
 
+
 # Funciones de Ordenamiento
 
 def ordenar_por_nombre(lista, opcion):
@@ -179,7 +293,6 @@ def ordenar_por_nombre(lista, opcion):
             elif opcion == '2':  # descendente
                 if nombre_i < nombre_j:
                     lista[i], lista[j] = lista[j], lista[i]
-
 
     # Mostramos el resultado en pantalla
     if opcion == '1':
@@ -265,6 +378,7 @@ def ordenar_por_superficie(lista, opcion):
             print(f"• País: {pais['nombre']} | Población: {pais['poblacion']} | Superficie: {pais['superficie']} km² | Continente: {pais['continente']}")  
     else:
         print("Por favor, ingrese un número válido del menú para ordenar ascendente o descendentemente.")
+
 
 
 #  Funciones de Estadística
@@ -393,18 +507,20 @@ print("Navegue por nuestro menú ingresando el número corrrespondiente.\n")
 
 
 # Bucle principal que mostrará un menú gráfico hasta que el usuaio decida salir
-while opcion_menu != '5':
+while opcion_menu != '7':
 
     lista_paises = [] # Reiniciamos la lista para evitar duplicación de datos, y trabajar siempre en base al archivo.csv original
 
     # Menú Gráfico
     print("======== Gestor Informático de Países ========")
     print("|                                            |")
-    print("|           1. Buscar País                   |")
-    print("|           2. Filtrar Países                |")
-    print("|           3. Ordenar Países                |")
-    print("|           4. Mostrar Estadísticas          |")
-    print("|           5. Salir                         |")
+    print("|           1. Agregar un País               |")
+    print("|           2. Actualizar (Pob/Sup)          |")
+    print("|           3. Buscar País                   |")
+    print("|           4. Filtrar Países                |")
+    print("|           5. Ordenar Países                |")
+    print("|           6. Mostrar Estadísticas          |")
+    print("|           7. Salir                         |")
     print("|                                            |")
     print("==============================================\n")
 
@@ -412,11 +528,43 @@ while opcion_menu != '5':
     print("")
 
     match opcion_menu:
+
         case '1':
+            print("============= 1. Agregar un País =============\n")
+            lectura_csv(lista_paises) # obtenemos los datos del archivo desde la funcion
+
+            pais = input("Ingrese el nombre del país que desea agregar.\n► ").strip().title()
+
+            if not(pais.isalpha()): # con .isalpha nos aseguramos que no sea un numero o vacío
+                print("El valor ingresado no corresponde con uno valido\nIntente nuevamente")
+            else:
+                if verificar_duplicado(lista_paises, pais): # Verificamos que no este en la lista
+                    print(f"{pais} ya esta dentro de la lista.")
+                    
+                else:
+                    agregar_pais(pais) # llamamos a la funcion que pide el resto de datos y añade al .csv
+
+        case '2':
+            print("========== 2. Actualizar (Pob/Sup) ==========\n")
+            lectura_csv(lista_paises) # obtenemos los datos del archivo desde la funcion
+
+            pais = input("Ingrese el país que desearia actualizar su población y superficie.\n► ").strip().title()
+
+            if not(pais.isalpha()): # con .isalpha nos aseguramos que no sea un numero o vacío
+                print("El valor ingresado no corresponde con uno valido\nIntente nuevamente")
+                
+            else:
+                if not(verificar_duplicado(lista_paises, pais)): # verificamos si el país esta en la lista
+                    print(f"{pais} no se encuentra en la lista.")
+
+                else:
+                    agregar_pob_sup(lista_paises, pais) # Lammamos a la funcion que actualiza pob/sup
+
+        case '3':
             print("================ Buscar País ================\n")
 
             pais = input("Ingrese el nombre del país que desea buscar.\n► ").strip().title()
-            lectura_csv(lista_paises) # obtenemos los datos desde la funcion
+            lectura_csv(lista_paises) # obtenemos los datos del archivo desde la funcion
             print("")
 
             bandera = False # usamos bandera para mostrar mensaje al usuario en caso de no encontrar el país ingresado
@@ -428,7 +576,7 @@ while opcion_menu != '5':
             if bandera == False:
                 print("El país ingresado no se encuentra en la lista")
 
-        case '2':
+        case '4':
             print("=============== Filtrar Países ===============\n")
 
             print("Ingrese el número corresponidente al filtro que desea aplicar.")
@@ -463,7 +611,7 @@ while opcion_menu != '5':
                 case _:
                     print("El número ingresado no corresponde con las opciones\nIntente nuevamente.")
 
-        case '3':
+        case '5':
             print("=============== Ordenar Países ===============\n")
 
             print("Ingrese el número corresponidente al ordenamiento que desea aplicar.")
@@ -493,7 +641,7 @@ while opcion_menu != '5':
                 case _:
                     print("El número ingresado no corresponde con las opciones\nIntente nuevamente.")
 
-        case '4':
+        case '6':
             print("============ Mostrar Estadísticas ============\n")
 
             print("Ingrese el número corresponidente a la estadística que desea aplicar.")
@@ -540,7 +688,7 @@ while opcion_menu != '5':
                 case _:
                     print("El número ingresado no corresponde con las opciones\nIntente nuevamente.")
 
-        case '5':
+        case '7':
             print("=================== Salir ===================\n")
             print("¡Gracias por usar el Gestor Informático de Países!\nHasta Luego.")
 
