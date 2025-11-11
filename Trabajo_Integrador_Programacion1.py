@@ -503,7 +503,7 @@ def pais_por_continente(lista, continente):
 # ----- Programa Principal -----
 
 print("¡Bienvenido/a al Gestor Informático de Países")
-print("Navegue por nuestro menú ingresando el número corrrespondiente.\n")
+print("Navegue por nuestro menú ingresando el número correspondiente.\n")
 
 
 # Bucle principal que mostrará un menú gráfico hasta que el usuaio decida salir
